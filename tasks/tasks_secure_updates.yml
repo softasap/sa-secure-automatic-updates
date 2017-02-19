@@ -1,0 +1,70 @@
+---
+  - include: __detect_init_system.yml
+
+  - name: Automatic Security Updates | Configure unattended-upgrades
+    template:
+      src:   "{{role_dir}}/templates/security/{{item}}.j2"
+      dest:  "/etc/apt/apt.conf.d/{{item}}"
+      owner: "root"
+      group: "root"
+      mode:  "0644"
+      force: yes
+    with_items:
+      - 10periodic
+      - 50unattended-upgrades
+    become: yes
+    tags:
+      - securityupdates
+
+  - block: #classic way via unattended-upgrades
+
+    - name: Automatic Security Updates | Install dependencies
+      apt: pkg="unattended-upgrades"
+      become: yes
+      tags:
+        - securityupdates
+
+    when: (upstart_system == "upstart") and (docker_test is not defined)
+
+  - block: #systemd way
+
+    - name: Automatic Security Updates | Make unattended upgrades run between 0100 - 0200 Create systemd override directory
+      file:
+        path: "/etc/systemd/system/apt-daily.timer.d/"
+        owner: "root"
+        group: "root"
+        mode: "0755"
+        recurse: yes
+        state: directory
+      become: yes
+      tags:
+        - securityupdates
+
+
+    - name:  Automatic Security Updates | Make unattended upgrades run between 0100 - 0200 | Copy override template
+      template:
+        src:   "{{ root_dir }}/templates/security/apt-daily-timer-d-override.conf.j2"
+        dest:  "/etc/systemd/system/apt-daily.timer.d/override.conf"
+        owner: "root"
+        group: "root"
+        mode:  "0644"
+        force: yes
+      become: yes
+      tags:
+        - securityupdates
+
+
+    - name:  Automatic Security Updates |  Configure | Make unattended upgrades run between 0100 - 0200 | Re-read systemd configuration
+      command: "/bin/systemctl daemon-reload"
+      become: yes
+      tags:
+        - securityupdates
+
+
+    - name:  Automatic Security Updates |  Configure | Make unattended upgrades run between 0100 - 0200 | Restart apt-daily.timer
+      service: name="apt-daily.timer" state=restarted
+      become: yes
+      tags:
+        - securityupdates
+
+    when: (upstart_system == "systemd") and (docker_test is not defined)

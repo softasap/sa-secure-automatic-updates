@@ -1,0 +1,5 @@
+---
+# defaults file for sa-secure-automatic-updates
+
+role_dir: "{{role_path}}"
+updates_notify_email: "root@locahost"
