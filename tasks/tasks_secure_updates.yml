@@ -28,7 +28,7 @@
 
   - block: #systemd way
 
-    - name: Automatic Security Updates | Make unattended upgrades run between 0100 - 0200 Create systemd override directory
+    - name: Automatic Security Updates | Make unattended upgrades run between 0100 - 0200 | Create systemd override directory
       file:
         path: "/etc/systemd/system/apt-daily.timer.d/"
         owner: "root"
@@ -43,7 +43,7 @@
 
     - name:  Automatic Security Updates | Make unattended upgrades run between 0100 - 0200 | Copy override template
       template:
-        src:   "{{ root_dir }}/templates/security/apt-daily-timer-d-override.conf.j2"
+        src:   "{{role_dir}}/templates/security/apt-daily-timer-d-override.conf.j2"
         dest:  "/etc/systemd/system/apt-daily.timer.d/override.conf"
         owner: "root"
         group: "root"
