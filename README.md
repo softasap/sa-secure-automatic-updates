@@ -37,7 +37,7 @@ If you installed the sa-secure-automatic-updates role using the command
    ansible galaxy install softasap.sa-secure-automatic-updates
 `
 
-the role will be available in the folder library\softasap.sa-vnc-remote-desktop.
+the role will be available in the folder library\softasap.sa-secure-automatic-updates.
 Please adjust the path accordingly.
 
 ```YAML
