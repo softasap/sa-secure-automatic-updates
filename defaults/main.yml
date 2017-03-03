@@ -2,4 +2,19 @@
 # defaults file for sa-secure-automatic-updates
 
 role_dir: "{{role_path}}"
-updates_notify_email: "root@locahost"
+
+# settings from 50unattended-upgrades
+updates_notify_email:                   "root@locahost"
+updates_automatic_reboot:               true
+updates_remove_unused_dependencies:     true
+
+# settings from 10periodic
+updates_update_package_lists:           1
+updates_download_upgradeable_packages:  1
+updates_autoclean_interval:             1
+updates_unattended_upgrade:             1
+updates_random_sleep:                   1
+
+# setting from apt-daily-timer-d-override.conf
+updates_on_calendar:                    "01:00"
+updates_randomized_delay:               "1h"
