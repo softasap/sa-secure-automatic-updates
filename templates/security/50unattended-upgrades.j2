@@ -19,8 +19,8 @@ Unattended-Upgrade::Mail "{{updates_notify_email}}";
 
 // Do automatic removal of new unused dependencies after the upgrade
 // (equivalent to apt-get autoremove)
-Unattended-Upgrade::Remove-Unused-Dependencies "true";
+Unattended-Upgrade::Remove-Unused-Dependencies "{{updates_remove_unused_dependencies}}";
 
 // Automatically reboot *WITHOUT CONFIRMATION* if a
 // the file /var/run/reboot-required is found after the upgrade
-Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot "{{updates_automatic_reboot}}";
