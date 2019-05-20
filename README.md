@@ -4,7 +4,7 @@ sa-secure-automatic-updates
 [![Build Status](https://travis-ci.org/softasap/sa-secure-automatic-updates.svg?branch=master)](https://travis-ci.org/softasap/sa-secure-automatic-updates)
 
 
-Forces automatic installation of the security updates on Ubuntu 16.04 LTS servers
+Forces automatic installation of the security updates on Ubuntu LTS servers
 
 
 
