@@ -5,7 +5,7 @@ galaxy_info:
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
-  
+
   # Some suggested licenses:
   # - BSD (default)
   # - MIT
@@ -25,9 +25,11 @@ galaxy_info:
       versions:
 #        - trusty
         - xenial
+        - bionic
   galaxy_tags:
     - security
-    - unattended-updates
+    - unattendedupdates
+    - unattended
     - ubuntu
 
   #platforms:
@@ -156,7 +158,7 @@ galaxy_info:
   #  - squeeze
   #  - stretch
   #  - wheezy
-  
+
 #  galaxy_tags: []
     # List tags for your role here, one per line. A tag is
     # a keyword that describes and categorizes the role.
